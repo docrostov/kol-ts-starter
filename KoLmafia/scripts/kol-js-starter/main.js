@@ -11,16 +11,32 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "breakfast": () => /* binding */ breakfast,
+/* harmony export */   "checkMP": () => /* binding */ checkMP,
 /* harmony export */   "main": () => /* binding */ main
 /* harmony export */ });
-function breakfast() {
-  setClan('Bonus Adventures from Hell');
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! kolmafia */ "kolmafia");
+/* harmony import */ var kolmafia__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(kolmafia__WEBPACK_IMPORTED_MODULE_0__);
+
+function checkMP() {
+  if ((0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.myMp)() < 200) {
+    return "Your MP is less than 200.";
+  } else {
+    return "Your MP is greater than or equal to 200.";
+  }
 }
 function main() {
-  breakfast();
-  print("Hey, you ran a script! Cool!");
+  (0,kolmafia__WEBPACK_IMPORTED_MODULE_0__.print)(checkMP());
 }
+
+/***/ }),
+
+/***/ "kolmafia":
+/*!***************************!*\
+  !*** external "kolmafia" ***!
+  \***************************/
+/***/ ((module) => {
+
+module.exports = require("kolmafia");;
 
 /***/ })
 
@@ -50,6 +66,18 @@ function main() {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => module['default'] :
+/******/ 				() => module;
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
