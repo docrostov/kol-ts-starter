@@ -31,7 +31,7 @@ module.exports = {
     ],
   },
   optimization: {
-    // Disable minification because it makes debugging really a pain in the ass, but we still want tree-shaking
+    // Disable compression because it makes debugging more difficult for KolMafia
     minimize: false,
   },
   performance: {
