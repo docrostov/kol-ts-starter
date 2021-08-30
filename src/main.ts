@@ -1,6 +1,6 @@
 import { myMp, print } from "kolmafia";
 
-export function checkMP() {
+export function checkMP(): string {
   if (myMp() < 200) {
     return "Your MP is less than 200.";
   } else {
@@ -8,6 +8,6 @@ export function checkMP() {
   }
 }
 
-export function main() {
+export function main(): void {
   print(checkMP());
 }
