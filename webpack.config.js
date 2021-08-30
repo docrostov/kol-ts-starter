@@ -2,6 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const webpack = require("webpack"); // does this have a purpose? or can it just get deleted?
 const packageData = require("./package.json");
 /* eslint-enable @typescript-eslint/no-var-requires */
@@ -14,7 +15,6 @@ module.exports = {
   mode: "development",
   devtool: false,
   output: {
-    // Change the final string here to the name you want your script to use in mafia.
     path: path.resolve(__dirname, "KoLmafia", "scripts", packageData.name),
     filename: "[name].js",
     libraryTarget: "commonjs",
