@@ -34,7 +34,9 @@ module.exports = {
   },
   plugins: [],
   externals: {
-    // Add any ASH scripts you would like to use here.
+    // Necessary to allow kolmafia imports.
     kolmafia: "commonjs kolmafia",
+    // Add any ASH scripts you would like to use here to allow importing. E.g.:
+    // "canadv.ash": "commonjs canadv.ash",
   },
 };
