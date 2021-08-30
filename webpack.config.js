@@ -1,6 +1,10 @@
-var path = require("path");
-var webpack = require("webpack");
-var packageData = require("./package.json");
+/* eslint-env node */
+
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require("path");
+const webpack = require("webpack"); // does this have a purpose? or can it just get deleted?
+const packageData = require("./package.json");
+/* eslint-enable @typescript-eslint/no-var-requires */
 
 module.exports = {
   entry: {
@@ -32,6 +36,5 @@ module.exports = {
   externals: {
     // Add any ASH scripts you would like to use here.
     kolmafia: "commonjs kolmafia",
-    "canadv.ash": "commonjs canadv.ash",
   },
 };
