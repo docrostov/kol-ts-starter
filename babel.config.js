@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = function (api) {
   api.cache(true);
   return {
@@ -6,7 +7,7 @@ module.exports = function (api) {
       [
         "@babel/preset-env",
         {
-          targets: { rhino: "1.7" },
+          targets: { rhino: "1.7.13" },
         },
       ],
     ],
