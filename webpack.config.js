@@ -1,6 +1,11 @@
-var path = require("path");
-var webpack = require("webpack");
-var packageData = require("./package.json");
+/* eslint-env node */
+
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require("path");
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const webpack = require("webpack"); // does this have a purpose? or can it just get deleted?
+const packageData = require("./package.json");
+/* eslint-enable @typescript-eslint/no-var-requires */
 
 module.exports = {
   entry: {
@@ -12,7 +17,6 @@ module.exports = {
   mode: "production",
   devtool: false,
   output: {
-    // Change the final string here to the name you want your script to use in mafia.
     path: path.resolve(__dirname, "KoLmafia", "scripts", packageData.name),
     filename: "[name].js",
     libraryTarget: "commonjs",
@@ -40,8 +44,9 @@ module.exports = {
   },
   plugins: [],
   externals: {
-    // Add any ASH scripts you would like to use here.
+    // Necessary to allow kolmafia imports.
     kolmafia: "commonjs kolmafia",
-    "canadv.ash": "commonjs canadv.ash",
+    // Add any ASH scripts you would like to use here to allow importing. E.g.:
+    // "canadv.ash": "commonjs canadv.ash",
   },
 };

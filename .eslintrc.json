@@ -1,13 +1,19 @@
 {
-  "extends": ["eslint:recommended"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "libram"],
   "rules": {
     "block-scoped-var": "error",
-    "eqeqeq": "error",
-    "no-var": "error",
-    "prefer-const": "error",
     "eol-last": "error",
-    "prefer-arrow-callback": "error",
+    "eqeqeq": "error",
     "no-trailing-spaces": "error",
+    "no-var": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
     "prefer-template": "error",
     "sort-imports": [
       "error",
@@ -16,10 +22,8 @@
         "ignoreDeclarationSort": true
       }
     ],
-    "node/no-unpublished-import": "off"
-  },
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "libram/verify-constants": "error"
   }
 }
