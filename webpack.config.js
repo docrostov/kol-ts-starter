@@ -9,7 +9,8 @@ const packageData = require("./package.json");
 
 module.exports = {
   entry: {
-    // Point "entry" to scripts you want to be CLI-eligible.
+    // Define files webpack will emit, does not need to correspond 1:1 with every typescript file
+    // You need an emitted file for each entrypoint into your code, e.g. the main script and the ccs it calls
     "main-script-name": "./src/main.ts",
   },
   mode: "development",
