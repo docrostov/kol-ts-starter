@@ -5,7 +5,7 @@
   "main": "KoLmafia/scripts/kol-js-starter/main-script-name.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:types && npm run build:js",
+    "build": "yarn run build:types && yarn run build:js",
     "build:types": "tsc",
     "build:js": "webpack",
     "lint": "eslint src && prettier --check .",
