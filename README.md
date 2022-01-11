@@ -24,7 +24,7 @@ export function main() {
 }
 ```
 
-- **STEP 6:** Now, let's update package.json; run `yarn init` to revamp the package.json file to reflect whatever you want your script to be named. The new name will propagate down into the final build.
+- **STEP 6:** Now, let's update package.json; run `yarn init` to revamp the package.json file to reflect whatever you want your script to be named. This command will run you through some questions in the command line, including the name of the script, your name, and where on github this repository is stored. Any or all of these can be skipped to leave the existing names and details in place. Your new name will propagate down into the final build.
 - **STEP 7:** Let's build your code! Run `yarn run build` to build out a new output main.js file.
 - **STEP 8:** (OPTIONAL) Now, you want to symlink your code into your KoLMafia directory. This will involve using a linking command. Keep in mind that you cannot do ./ completion with symlinks; you need to explicitly list out the entire file path. My symlink command on Mac OS was the following: `ln -s "$PWD/KoLmafia/scripts/PACKAGE_NAME ~/Library/Application\ Support/KoLmafia/scripts/` -- Windows and Linux users may need a different approach. You can also simply move the generated JS script into your mafia/scripts folder, you'll just need to remember when debugging to do it every time you re-compile the script.
 - **STEP 9:** From the KoLMafia GCLI, run "main.js" -- this should generate your MP statement. Congrats, you made something!
