@@ -1,17 +1,24 @@
 # DEVELOPING FOR MAFIA IN JS
 
-Hey all. This is a brief explainer on how to get to a usable JS development environment for KOLMafia. Ideally, this will cover everything you need to make a sample JavaScript mafia script. This was written by a JS novice, so hopefully it properly enumerates everything you need to do to get an environment up and running!
+Hey all. This is a brief explainer on how to get to a usable JS development environment for KoLMafia. Ideally, this will cover everything you need to make a sample JavaScript mafia script. This was written by a JS novice, so hopefully it properly enumerates everything you need to do to get an environment up and running!
 
-- **STEP 1:** Download Node.js / NPM. This will allow you to install babel/webpack and set up a compiler. To download, visit [the latest node.js build](https://nodejs.org/en/). Then install the package manager, yarn, by opening a [terminal](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/) and typing: `npm install -g yarn`. Think of this like immediately installing Chrome or Firefox on a new computer instead of using Internet Explorer.
-- **STEP 2:** Let's set up a sample repository. You can do that using this starter repository right here! I would recommend starting by forking the repository, which you can do up in the top right of the page using the "fork" button. Once you have forked this repository, clone it to your machine by going back to your terminal (navigating to the directory where you want to store your github repos) and typing `git clone` & the .git URL that is accessible via the green 'CODE' button above the file tree in the GitHub page you'll see before you. NOTE: if this command does not work, you probably do not have Git installed on your computer, and will also need to install Git. Please find information on how to do that [here](https://github.com/git-guides/install-git).
-- **STEP 3:** You should now have a copy of this repository on your machine, with a package.json file you can use to help ensure your dependencies are installed. Let's switch to [VSCode](https://code.visualstudio.com/download) now to start working with it. Open the VSCode and open the folder containing your repo. You can also open a terminal within VSCode to save clicks by pressing `ctrl+shift+\``.
-- **STEP 4:** Run `yarn install` while inside your new directory to ensure your local copy of npm has correctly installed necessary dependencies, like the Loathing Scripting Society's JS toolkit (LIBRAM) & other KoLMafia JS toolkits.
-- **STEP 5:** Let's modify the code a little bit. At build, all this code does is tell you how much MP you have relative to the number 200; let's change the print statement to add your name in here. Modify "main.ts" to include the following, changing "\[NAME\]" to your name.:
+## PART ONE - BABY'S FIRST TS COMPILATION
+
+- **STEP 1:** Download Node.js / NPM. This will allow you to install babel/webpack and set up a compiler. To download, visit [the latest node.js build](https://nodejs.org/en/). Then install the package manager, `yarn`, by opening a [terminal](https://www.ionos.com/help/email/troubleshooting-mail-basicmail-business/access-the-command-prompt-or-terminal/) and typing: `npm install -g yarn`. Think of this like immediately installing Chrome or Firefox on a new computer instead of using Internet Explorer.
+- **STEP 2:** Let's set up a sample repository. You can do that using this starter repository right here! To do so, use the terminal to navigate to where you want the repo saved, and call `git clone https://github.com/docrostov/kol-ts-starter` NOTE: if this command does not work, you probably do not have Git installed on your computer, and will also need to install Git. Please find information on how to do that [here](https://github.com/git-guides/install-git).
+- **STEP 3:** Run `yarn install` while inside your new directory to ensure your local copy of `npm` has correctly installed necessary dependencies, like the Loathing Scripting Society's JS toolkit (LIBRAM) & other KoLMafia JS toolkits. You will need to do this for every project you have, `yarn` essentially creates an isolated virtual environment for you to work in. This is rather convenient, as you get to avoid version conflicts between your packages!
+- **STEP 4:** Let's build the code! Run `yarn run build`, and you'll see that your folder now has a folder called KoLMafia in it, which in turn has a scripts subfolder. This should look familiar, as that's how the KoLMafia directory is structured. The scripts folder has a kol-js-starter subfolder, and there you'll find a `main-script-name.js` file. Copy it into the scripts directory of your KoLMafia installation.
+- **STEP 5:** From the KoLMafia GCLI, run `main-script-name.js` -- this should generate your MP statement. Congrats, you did the thing!
+
+## PART TWO - NOW WITH MORE CHEST HAIR
+
+- Since you've successfully gotten the code to compile, now we can mess around with some stuff. It is recommended you use [VSCode](https://code.visualstudio.com/download) for editing due to its excellent TypeScript support. Once you install VSCode, open it and select the folder with the repository in it. You can also open a terminal within VSCode to save clicks by pressing `ctrl+shift+\`. For extra credit, you can install some very helpful VS Code extensions: [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode). If you install the latter, your code will auto-format on save!
+- Let's modify the code a little bit. The TS code that created the JS file you just ran lives in `src/main.ts` within the repository. At build, all this code does is tell you how much MP you have relative to the number 200; let's change the print statement to add your name in here. Modify `main.ts` to include the following, changing ``"\[NAME\]"`` to your name.:
 
 ```js
 import { myMp, print } from "kolmafia";
 
-export function checkMP() {
+export function checkMP(): string {
   if (myMp() < 200) {
     return "Your MP is less than 200, buddy.";
   } else {
@@ -19,14 +26,16 @@ export function checkMP() {
   }
 }
 
-export function main() {
+export function main(): void {
   print(checkMP());
 }
 ```
+- A helpful command within `yarn` is `yarn init`. This is useful for changing details about the package without needing to manually muck around `packages.json` and hoping you changed everything correctly. Call `yarn init` now, and provide a cool name for your package. You will be then asked further questions like what version of the package this is, a description of said package and so on. You can skip any you don't feel like answering by pressing enter.
+- Repeat the `yarn run build` from last time, and this time the scripts folder will have a subfolder named whatever you named the project. Neat!
+- Rather than manually copying the files every time you build your package, you can create a symlink that will let KoLMafia see the files in your repository folder. Keep in mind that you cannot do `./` completion with symlinks; you need to explicitly list out the entire file path. My symlink command on Mac OS was the following: `ln -s "$PWD/KoLmafia/scripts/PACKAGE_NAME ~/Library/Application\ Support/KoLmafia/scripts/` -- Windows and Linux users may need a different approach.
+- Once you make the symlink, you can call `PACKAGE_NAME/main-script-name.js` from the KoLMafia GCLI. Neat!
 
-- **STEP 6:** Now, let's update package.json; run `yarn init` to revamp the package.json file to reflect whatever you want your script to be named. The new name will propagate down into the final build.
-- **STEP 7:** Let's build your code! Run `yarn run build` to build out a new output main.js file.
-- **STEP 8:** (OPTIONAL) Now, you want to symlink your code into your KoLMafia directory. This will involve using a linking command. Keep in mind that you cannot do ./ completion with symlinks; you need to explicitly list out the entire file path. My symlink command on Mac OS was the following: `ln -s "$PWD/KoLmafia/scripts/PACKAGE_NAME ~/Library/Application\ Support/KoLmafia/scripts/` -- Windows and Linux users may need a different approach. You can also simply move the generated JS script into your mafia/scripts folder, you'll just need to remember when debugging to do it every time you re-compile the script.
-- **STEP 9:** From the KoLMafia GCLI, run "main.js" -- this should generate your MP statement. Congrats, you made something!
+## PART THREE - QUICK NOTES ON GIT
 
-For extra credit, you can install some very helpful VS Code extensions: [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode). If you install the latter, your code will auto-format on save!
+- If you intend to help develop an existing project, rather than cloning straight from the project's repository, click the "Fork" button to make your own copy of it. You can then `git clone` this repository and start working on it. It's generally recommended to create a fresh branch when you start working on something, and then pull request it in against the original repository. This makes it easier to keep your personal copy of the project's main branch up to date if you need it for anything.
+- A common use of `yarn init` is to repurpose an existing project into something you can noodle around with, perhaps into a new project of your own? That's fine and dandy until it comes time to chuck it onto GitHub, all while you have existing git config debris from when you cloned it the first time. Never fear, for this is solvable! Go onto GitHub and create the repository where you wish to store your project, copy its URL, and override the existing git config by calling `git remote set-url NEW_REPOSITORY_URL`. Now you can put your code up for the world to see!
