@@ -1,4 +1,4 @@
-# DEVELOPING FOR MAFIA IN TYPESCCRIPT (TS)
+# DEVELOPING FOR MAFIA IN TYPESCRIPT (TS)
 
 Hey all. This is a brief explainer on how to get to a usable TS development environment for KoLMafia. Ideally, this will cover everything you need to make a sample JavaScript mafia script. This was written by a TS novice, so hopefully it properly enumerates everything you need to do to get an environment up and running!
 
