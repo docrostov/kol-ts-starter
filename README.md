@@ -83,7 +83,7 @@ __prettierrc.js and .prettierignore__
 
 Prettier is a tool that automatically formats your code. It helps make it look consistent and more readable. It's especially nice to have for projects with multiple contributors, because that way code looks more consistent between multiple authors.
 
-The `prettierrc.js` file specifies the [options](https://prettier.io/docs/en/options.html) of how you want your code formatted. In other words, as the project owner, you can dictate how you want the source code to look. Don't waste your time telling contributors what to do. Write in this file, `useTabs: true` or `tabWidth: 4` for non-default settings. If you have a GitHub workflow, you can ensure that it always runs eslint and prettier.
+The `prettierrc.js` file specifies the [options](https://prettier.io/docs/en/options.html) of how you want your code formatted. In other words, as the project owner, you can dictate how you want the source code to look. Don't waste your time telling contributors what to do. Write in this file, `useTabs: true` or `tabWidth: 4` for non-default settings. If you have a GitHub workflow, you can ensure that it always runs ESLint and Prettier.
 
 The `.prettierignore` file, like the `.eslintignore` file specifies what kinds of files to skip code formatting.
 
@@ -93,4 +93,4 @@ If you're going to commit your project to GitHub, you don't want to commit every
 
 __.vscode__
 
-The files within this folder tell the [Visual Studio Code](https://code.visualstudio.com/) editor to automatically run eslint and prettier when saving files. If you aren't using this editor, then they don't do anything.
+The files within this folder tell the [Visual Studio Code](https://code.visualstudio.com/) editor to automatically run ESLint and Prettier when saving files. If you aren't using this editor, then they don't do anything.
