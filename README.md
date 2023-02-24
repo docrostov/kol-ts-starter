@@ -89,7 +89,7 @@ The `.prettierignore` file, like the `.eslintignore` file specifies what kinds o
 
 __.gitignore__
 
-If you're going to commit your project to GitHub, you don't want to commit every single file and folder within the project folder, like `node_modules`. This file automatically tells git to skip them.
+If you're going to commit your project to a repository such as GitHub, you don't want to commit every single file and folder within the project folder, like `node_modules`. This file automatically tells git to skip them.
 
 __.vscode__
 
