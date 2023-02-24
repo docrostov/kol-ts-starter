@@ -46,36 +46,36 @@ __package.json__
 The `package.json` file contains:
 1. Metadata about your project
 2. The aliases for functions you want to call e.g. `yarn build` is defined in this sample project as `"build": "yarn run build:types && yarn run build:js",`
-3. The other javascript dependencies that you need to either build or run your project
+3. The other Javascript dependencies that you need to either build or run your project
 
 __webpack.config.js__
 
 Webpack is a tool that combines multiple source files into one single file, including your dependencies. In other words, it makes scripts portable so you don't need users to have an entire `node_modules` folder in their KoLmafia scripts folder.
 
-The `webpack.config.js` file contains data about what you want to files you want the build process to emit and how you want to build them. The entry object maps a list of filenames to produce to the corresponding typescript files. In other words, if you want to produce one script then you want one entry here. TS/JS do not support function overloading e.g. `function main()` and `function main(round, monster, page)` may not exist in the same file. Thus, if you want to have a consult script then you need to define another entry.
+The `webpack.config.js` file contains data about what you want to files you want the build process to emit and how you want to build them. The entry object maps a list of filenames to produce to the corresponding Typescript files. In other words, if you want to produce one script then you want one entry here. Javascript does not support function overloading e.g. `function main()` and `function main(round, monster, page)` may not exist in the same file. Thus, if you want to have a consult script then you need to define another entry.
 
 __yarn.lock__
 
-The lock file contains the specific versions of the javascript dependencies described in `package.json` as well as their hashes. This is vital for reproducible builds. It is extremely useful to include this file. (NOTE: If using npm instead of yarn, then you will have a `package-lock.json` file containing the same type of data.)
-1. Other users will be able to build the script as you intend. When running `yarn install` and `npm install`, those programs will refer to their respective lock files to install the specified package versions. Thus, even if a required dependency such as libram has an update with a breaking change, other users won't end up creating broken builds.
-2. If you end up needing to download the project yourself from the remote repository such as github, you can build your script again immediately for the same reason as above.
-3. This enables you to automate builds via workflows on Github/Gitlab/etc. If another user can reproduce your script, then github workflows can, too.
+The lock file contains the specific versions of the Javascript dependencies described in `package.json` as well as their hashes. This is vital for reproducible builds. It is extremely useful to include this file. (NOTE: If using npm instead of yarn, then you will have a `package-lock.json` file containing the same type of data.)
+1. Other users will be able to build the script as you intend. When running `yarn install` and `npm install`, those programs will refer to their respective lock files to install the specified package versions. Thus, even if a required dependency such as [Libram](https://github.com/loathers/libram) has an update with a breaking change, other users won't end up creating broken builds.
+2. If you end up needing to download the project yourself from the remote repository such as GitHub, you can build your script again immediately for the same reason as above.
+3. This enables you to automate builds via workflows on GitHub/GitLab/etc. If another user can reproduce your script, then GitHub workflows can, too.
 
 __tsconfig.json__
 
-This is a necessary file that tells typescript what settings to use when compiling. Most importantly as years go by, it may be useful to change from the current target, es2018, to future versions of javascript.
+This file tells Typescript what settings to use when compiling. As years go by, it may be useful to change from the current target, es2018, to future versions of Javascript.
 
 __babel.config.js__
 
-Babel is a tool for adding backwards-compatible code to your script. Unfortunately, not all features in javascript work in KoLmafia. You can see the table of support for new features in Mozilla Rhino, the javascript engine used by KoLmafia, here: https://mozilla.github.io/rhino/compat/engines.html
+Babel is a tool for adding backwards-compatible code to your script. Unfortunately, not all features in Javascript work in KoLmafia. You can see the table of support for new features in Mozilla Rhino, the Javascript engine used by KoLmafia [here](https://mozilla.github.io/rhino/compat/engines.html).
 
-The babel.config.js file thus tells babel what functions need to be [polyfilled](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) to work with KoLmafia. Not every function is listed here, because ideally, babel already contains the list of functions needed to be polyfilled in `babel-compat-data`.
+The babel.config.js file thus tells Babel what functions need to be [polyfilled](https://developer.mozilla.org/en-US/docs/Glossary/Polyfill) to work with KoLmafia. Not every function is listed here, because ideally, Babel already contains the list of functions needed to be polyfilled in `babel-compat-data`.
 
 __eslintrc.json and .eslintignore__
 
-ESLint is a tool that [lints](https://en.wikipedia.org/wiki/Lint_\(software\)) code. In other words, it is another tool for catching errors before you run your script. Additionally, thanks to the [eslint-plugin-libram](https://github.com/Loathing-Associates-Scripting-Society/eslint-plugin-libram) project, it also provides error checking for KoLmafia constants. For example, if you type in ``$item`seal toof` `` you'll receive the error `Unrecognized enumerated value name "seal toof".eslint(libram/verify-constants)`. In addition, it can automatically correct unambiguous errors such as capitalization and incomplete names.
+ESLint is a tool that [lints](https://en.wikipedia.org/wiki/Lint_\(software\)) code. In other words, it is another tool for catching errors before you run your script. Additionally, thanks to the [eslint-plugin-libram](https://github.com/Loathing-Associates-Scripting-Society/eslint-plugin-libram) project, it also provides error checking for KoLmafia constants. For example, if you type in ``$item`seal toof` `` you'll receive the error `Unrecognized enumerated value name "seal toof".eslint(libram/verify-constants)`. The best part is it will automatically correct unambiguous errors such as capitalization and incomplete names.
 
-The `eslintrc.json` file specifies rules beyond the default that you want to enable or disable. It lets you make linting strictor or looser as needed.
+The `eslintrc.json` file specifies rules beyond the default that you want to enable or disable. It lets you make linting stricter or looser as needed.
 
 The `.eslintignore` file specifies what kinds of files to skip linting. You definitely don't want to lint your hundreds or thousands of third-party dependencies, for example.
 
@@ -83,14 +83,14 @@ __prettierrc.js and .prettierignore__
 
 Prettier is a tool that automatically formats your code. It helps make it look consistent and more readable. It's especially nice to have for projects with multiple contributors, because that way code looks more consistent between multiple authors.
 
-The `prettierrc.js` file specifies the [options](https://prettier.io/docs/en/options.html) of how you want your code formatted. In other words, as the project owner, you can dictate how you want the source code to look. Don't waste your time telling contributors what to do. Write in this file, `useTabs: true` or `tabWidth: 4` for non-default settings. If you have a GitHub workflow, you can ensure that it always runs eslint and prettier.
+The `prettierrc.js` file specifies the [options](https://prettier.io/docs/en/options.html) of how you want your code formatted. In other words, as the project owner, you can dictate how you want the source code to look. Don't waste your time telling contributors what to do. Write in this file, `useTabs: true` or `tabWidth: 4` for non-default settings. If you have a GitHub workflow, you can ensure that it always runs ESLint and Prettier.
 
 The `.prettierignore` file, like the `.eslintignore` file specifies what kinds of files to skip code formatting.
 
 __.gitignore__
 
-If you're going to commit your project to GitHub, you don't want to commit every single file and folder within the project folder, like `node_modules`. This file automatically tells git to skip them.
+If you're going to commit your project to a repository such as GitHub, you don't want to commit every single file and folder within the project folder, like `node_modules`. This file automatically tells git to skip them.
 
 __.vscode__
 
-The files within this folder tell the [Visual Studio Code](https://code.visualstudio.com/) editor to automatically run eslint and prettier when saving files. If you aren't using this editor, then they don't do anything.
+The files within this folder tell the [Visual Studio Code](https://code.visualstudio.com/) editor to automatically run ESLint and Prettier when saving files. If you aren't using this editor, then they don't do anything.
